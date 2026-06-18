@@ -39,6 +39,9 @@ import { AssuntoCreateComponent } from './components/assunto/assunto-create/assu
 import { NgxMaskModule } from 'ngx-mask';
 import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
 import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assunto-update.component';
+import { AutorListComponent } from './components/autor/autor-list/autor-list.component';
+import { AutorCreateComponent } from './components/autor/autor-create/autor-create.component';
+import { AutorUpdateComponent } from './components/autor/autor-update/autor-update.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assu
     TecnicoUpdateComponent,
     AssuntoListComponent,
     AssuntoCreateComponent,
-    AssuntoUpdateComponent
+    AssuntoUpdateComponent,
+    AutorListComponent,
+    AutorCreateComponent,
+    AutorUpdateComponent
   ],
   imports: [
     BrowserModule,

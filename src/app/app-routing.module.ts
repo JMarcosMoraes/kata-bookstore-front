@@ -10,6 +10,10 @@ import { AssuntoListComponent } from './components/assunto/assunto-list/assunto-
 import { AssuntoCreateComponent } from './components/assunto/assunto-create/assunto-create.component';
 import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assunto-update.component';
 
+import { AutorListComponent } from './components/autor/autor-list/autor-list.component';
+import { AutorCreateComponent } from './components/autor/autor-create/autor-create.component';
+import { AutorUpdateComponent } from './components/autor/autor-update/autor-update.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {
@@ -18,7 +22,11 @@ const routes: Routes = [
        {path: 'assuntos', component: AssuntoListComponent},
        {path: 'assuntos/create', component: AssuntoCreateComponent},
        {path: 'assuntos/update/:id', component: AssuntoUpdateComponent},
-       {path: 'assuntos/delete/:id', component: AssuntoListComponent}
+       {path: 'assuntos/delete/:id', component: AssuntoListComponent},
+       {path: 'autores', component: AutorListComponent},
+       {path: 'autores/create', component: AutorCreateComponent},
+       {path: 'autores/update/:id', component: AutorUpdateComponent},
+       {path: 'autores/delete/:id', component: AutorListComponent}
     ] 
 }];
 
