@@ -17,7 +17,8 @@ const routes: Routes = [
        {path: 'home', component: HomeComponent},
        {path: 'assuntos', component: AssuntoListComponent},
        {path: 'assuntos/create', component: AssuntoCreateComponent},
-       {path: 'assuntos/update/:id', component: AssuntoUpdateComponent}
+       {path: 'assuntos/update/:id', component: AssuntoUpdateComponent},
+       {path: 'assuntos/delete/:id', component: AssuntoListComponent}
     ] 
 }];
 

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Assunto } from 'src/app/models/assuntos';
 import { AssuntoService } from 'src/app/services/assunto.service';
 
@@ -17,7 +19,12 @@ export class AssuntoListComponent implements OnInit {
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: AssuntoService) { }
+  constructor(
+        private service: AssuntoService,
+        private toast: ToastrService,
+        private router: Router,
+        private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void { 
     this.findAll();
@@ -35,6 +42,23 @@ export class AssuntoListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  delete(id: any): void {
+    this.service.delete(id).subscribe(() => {
+      this.toast.success('Assunto excluído com sucesso', 'Delete');
+      this.findAll();
+      }, ex => {
+      console.log(ex);
+        if(ex.error.errors) {
+          ex.error.errors.forEach(element => {
+            this.toast.error(element.message);          
+          });
+        } else {
+          this.toast.error(ex.error.message);
+        }      
+      }
+    )
+  }  
 
 }
 

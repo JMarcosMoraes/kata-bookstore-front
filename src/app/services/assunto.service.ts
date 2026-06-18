@@ -26,4 +26,8 @@ export class AssuntoService {
   update(assunto: Assunto): Observable<Assunto> {
     return this.http.put<Assunto>(`${API_CONFIG.baseUrl}/assuntos/${assunto.id}`, assunto);
   }
+
+  delete(id: any): Observable<Assunto> {
+    return this.http.delete<Assunto>(`${API_CONFIG.baseUrl}/assuntos/${id}`);
+  }
 }
