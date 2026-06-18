@@ -1,0 +1,32 @@
+.container {
+    height: 100%;
+}
+.sidenav {
+    width: 13rem;
+    color: #f4f7ff;
+    background: rgba(15, 28, 75, 0.92);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+}
+img {
+    width: 70%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+}
+
+.sidenav a {
+    color: #e9efff;
+}
+.sidenav i {
+    margin: .6rem;
+    color: #92b4ff;
+}
+.menu {
+    margin: 1rem 0 0 1rem;
+    color: #f4f7ff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+}
+
