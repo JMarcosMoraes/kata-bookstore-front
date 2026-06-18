@@ -42,6 +42,9 @@ import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assu
 import { AutorListComponent } from './components/autor/autor-list/autor-list.component';
 import { AutorCreateComponent } from './components/autor/autor-create/autor-create.component';
 import { AutorUpdateComponent } from './components/autor/autor-update/autor-update.component';
+import { LivroListComponent } from './components/livro/livro-list/livro-list.component';
+import { LivroCreateComponent } from './components/livro/livro-create/livro-create.component';
+import { LivroUpdateComponent } from './components/livro/livro-update/livro-update.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { AutorUpdateComponent } from './components/autor/autor-update/autor-upda
     AssuntoUpdateComponent,
     AutorListComponent,
     AutorCreateComponent,
-    AutorUpdateComponent
+    AutorUpdateComponent,
+    LivroListComponent,
+    LivroCreateComponent,
+    LivroUpdateComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,9 @@ import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assu
 import { AutorListComponent } from './components/autor/autor-list/autor-list.component';
 import { AutorCreateComponent } from './components/autor/autor-create/autor-create.component';
 import { AutorUpdateComponent } from './components/autor/autor-update/autor-update.component';
+import { LivroListComponent } from './components/livro/livro-list/livro-list.component';
+import { LivroCreateComponent } from './components/livro/livro-create/livro-create.component';
+import { LivroUpdateComponent } from './components/livro/livro-update/livro-update.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -26,7 +29,11 @@ const routes: Routes = [
        {path: 'autores', component: AutorListComponent},
        {path: 'autores/create', component: AutorCreateComponent},
        {path: 'autores/update/:id', component: AutorUpdateComponent},
-       {path: 'autores/delete/:id', component: AutorListComponent}
+       {path: 'autores/delete/:id', component: AutorListComponent},
+       {path: 'livros', component: LivroListComponent},
+       {path: 'livros/create', component: LivroCreateComponent},
+       {path: 'livros/update/:id', component: LivroUpdateComponent},
+       {path: 'livros/delete/:id', component: LivroListComponent}
     ] 
 }];
 
