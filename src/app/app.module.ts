@@ -30,12 +30,15 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
+import { AssuntoListComponent } from './components/assunto/assunto-list/assunto-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor, AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
+import { AssuntoCreateComponent } from './components/assunto/assunto-create/assunto-create.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
+import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assunto-update.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecn
     TecnicoListComponent,
     LoginComponent,
     TecnicoCreateComponent,
-    TecnicoUpdateComponent
+    TecnicoUpdateComponent,
+    AssuntoListComponent,
+    AssuntoCreateComponent,
+    AssuntoUpdateComponent
   ],
   imports: [
     BrowserModule,
