@@ -16,7 +16,7 @@ img {
 }
 
 .sidenav a {
-    color: #e9efff;
+    color: #fff0e9;
 }
 .sidenav i {
     margin: .6rem;
@@ -24,7 +24,7 @@ img {
 }
 .menu {
     margin: 1rem 0 0 1rem;
-    color: #f4f7ff;
+    color: #0b42d9;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(10px);
