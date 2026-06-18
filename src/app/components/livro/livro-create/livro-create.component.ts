@@ -3,8 +3,10 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Assunto } from 'src/app/models/assuntos';
+import { Autor } from 'src/app/models/autores';
 import { Livro } from 'src/app/models/livros';
 import { AssuntoService } from 'src/app/services/assunto.service';
+import { AutorService } from 'src/app/services/autor.service';
 import { LivroService } from 'src/app/services/livro.service';
 
 @Component({
@@ -26,6 +28,7 @@ export class LivroCreateComponent implements OnInit {
   }
 
   assuntos: Assunto[] = [];
+  autores: Autor[] = [];
   
   nome: FormControl = new FormControl(null, Validators.minLength(3));
   titulo: FormControl = new FormControl(null, Validators.minLength(3));
@@ -35,6 +38,7 @@ export class LivroCreateComponent implements OnInit {
 
   constructor(
     private assuntoService: AssuntoService,
+    private autorService: AutorService,
     private livroService: LivroService,
     private toast: ToastrService,
     private router: Router,
@@ -42,11 +46,18 @@ export class LivroCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAssuntos();
+    this.loadAutores();
   }
 
   loadAssuntos(): void {
     this.assuntoService.findAll().subscribe(resposta => {
       this.assuntos = resposta;
+    });
+  }
+
+  loadAutores(): void {
+    this.autorService.findAll().subscribe(resposta => {
+      this.autores = resposta;
     });
   }
 
