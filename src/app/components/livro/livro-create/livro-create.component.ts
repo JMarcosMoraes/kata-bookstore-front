@@ -18,7 +18,6 @@ export class LivroCreateComponent implements OnInit {
 
   livro: Livro = {
     id: null,
-    nome: '',
     titulo: '',
     editora: '',
     edicao: null,
@@ -29,8 +28,7 @@ export class LivroCreateComponent implements OnInit {
 
   assuntos: Assunto[] = [];
   autores: Autor[] = [];
-  
-  nome: FormControl = new FormControl(null, Validators.minLength(3));
+
   titulo: FormControl = new FormControl(null, Validators.minLength(3));
   editora: FormControl = new FormControl(null, Validators.minLength(3));
   edicao: FormControl = new FormControl(null, Validators.minLength(3));
