@@ -5,17 +5,9 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
     </mat-form-field>
-    
-    <div class="mat-elevation-z8 print-header">
-        <img src="assets/img/logo_M.png" alt="Bookstore">
-        <div class="header-text">
-            <h2>Bookstore</h2>
-            <p>Lista de Livros</p>
-        </div>
-    </div>
-
-    <div class="mat-elevation-z8 table-wrapper" id="printable-table">
       
+    <div class="mat-elevation-z8">
+          
         <table mat-table [dataSource]="dataSource">
       
           <ng-container matColumnDef="position">
@@ -49,5 +41,5 @@
                        aria-label="Select page of periodic elements">
         </mat-paginator>
       </div>
-      <button type="button" mat-flat-button color="accent" class="export-button" (click)="exportPdf()">Exportar PDF</button>
+      
 </div>
