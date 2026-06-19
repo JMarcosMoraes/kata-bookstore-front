@@ -59,41 +59,35 @@ export class LivroUpdateComponent implements OnInit {
       this.autores = autores;
       this.livro = livro;
 
-      if (!this.livro.autores) {
-        this.livro.autores = [];
-      }
 
       this.syncSelectedValues();
     });
   }
 
-  private syncSelectedValues(): void {
-    if (!this.livro || !this.livro.id) {
-      return;
-    }
+private syncSelectedValues(): void {
+  if (this.livro.autores && this.livro.autores.length && this.autores.length) {
+      this.livro.autores = this.autores.filter(a =>
+      this.livro.autores.some(livroAutor => livroAutor.id === a.id)
+    );
+  }
 
-    if (this.livro.assunto && this.assuntos.length) {
-      const selectedAssunto = this.assuntos.find(a => a.id === this.livro.assunto.id);
-      if (selectedAssunto) {
-        this.livro.assunto = selectedAssunto;
-      }
-    }
-
-    if (this.livro.autores && this.livro.autores.length && this.autores.length) {
-      this.livro.autores = this.livro.autores
-        .map(livroAutor => this.autores.find(a => a.id === livroAutor.id) || livroAutor)
-        .filter(a => !!a);
+  if (this.livro.assunto && this.assuntos.length) {
+    const selectedAssunto = this.assuntos.find(a => a.id === this.livro.assunto.id);
+    if (selectedAssunto) {
+      this.livro.assunto = selectedAssunto;
     }
   }
+ }
+
+ compareAutor(a: Autor, b: Autor): boolean {
+  return a && b ? a.id === b.id : a === b;
+ }
 
   compareAssunto(a: Assunto, b: Assunto): boolean {
     return a && b ? a.id === b.id : a === b;
   }
 
-  compareAutor(a: Autor, b: Autor): boolean {
-    return a && b ? a.id === b.id : a === b;
-  }
-  
+
   update(): void {
     if (!this.livro.assunto) {
       this.toast.error('Selecione um assunto antes de atualizar', 'Validação');
