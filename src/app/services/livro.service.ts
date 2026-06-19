@@ -27,6 +27,12 @@ export class LivroService {
     return this.http.put<Livro>(`${API_CONFIG.baseUrl}/livros/${livro.id}`, livro);
   }
 
+  relatorioPdf(): Observable<Blob> {
+    return this.http.get(`${API_CONFIG.baseUrl}/livros/relatorio/pdf`, {
+      responseType: 'blob'
+    });
+  }
+
   delete(id: any): Observable<Livro> {
     return this.http.delete<Livro>(`${API_CONFIG.baseUrl}/livros/${id}`);
   }
