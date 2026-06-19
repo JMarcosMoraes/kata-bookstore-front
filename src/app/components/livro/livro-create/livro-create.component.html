@@ -28,24 +28,31 @@
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Edição</mat-label>
                 <input 
+                type="number"
+                min="1"
+                step="1"
                 [(ngModel)]="livro.edicao"
                 name="edicao"
                 [formControl]="edicao"
                 matInput 
-                placeholder="Ex. João Silva"
-                maxlength="50">
+                placeholder="Ex. 1"
+                maxlength="5">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Ano de Publicação</mat-label>
                 <input 
+                type="number"
+                min="1000"
+                max="9999"
+                step="1"
                 [(ngModel)]="livro.anoPublicacao"
                 name="anoPublicacao"
                 [formControl]="anoPublicacao"
                 matInput 
-                placeholder="Ex. João Silva"
-                maxlength="50">
+                placeholder="Ex. 2024"
+                maxlength="4">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
 

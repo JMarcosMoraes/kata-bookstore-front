@@ -31,8 +31,8 @@ export class LivroCreateComponent implements OnInit {
 
   titulo: FormControl = new FormControl(null, Validators.minLength(3));
   editora: FormControl = new FormControl(null, Validators.minLength(3));
-  edicao: FormControl = new FormControl(null, Validators.minLength(3));
-  anoPublicacao: FormControl = new FormControl(null, Validators.minLength(3));
+  edicao: FormControl = new FormControl(null, [Validators.min(1), Validators.pattern('^[0-9]+$')]);
+  anoPublicacao: FormControl = new FormControl(null, [Validators.pattern('^[0-9]{4}$')]);
 
   constructor(
     private assuntoService: AssuntoService,
@@ -62,6 +62,11 @@ export class LivroCreateComponent implements OnInit {
   create(): void {
     if (!this.livro.assunto) {
       this.toast.error('Selecione um assunto antes de cadastrar', 'Validação');
+      return;
+    }
+
+    if (!this.livro.autores || this.livro.autores.length === 0) {
+      this.toast.error('Selecione pelo menos um autor antes de cadastrar', 'Validação');
       return;
     }
 
