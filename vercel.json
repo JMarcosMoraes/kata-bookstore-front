@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "performance": {
+    "budget": {
+      "initial": "2MB"
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
