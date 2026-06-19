@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
 import { Assunto } from 'src/app/models/assuntos';
 import { Autor } from 'src/app/models/autores';
 import { Livro } from 'src/app/models/livros';
@@ -45,31 +46,23 @@ export class LivroUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.livro.id = this.route.snapshot.paramMap.get('id');
-    this.loadAssuntos();
-    this.loadAutores();
-    this.findById();
+    this.loadData();
   }
 
-  loadAssuntos(): void {
-    this.assuntoService.findAll().subscribe(resposta => {
-      this.assuntos = resposta;
-      this.syncSelectedValues();
-    });
-  }
+  loadData(): void {
+    forkJoin({
+      assuntos: this.assuntoService.findAll(),
+      autores: this.autorService.findAll(),
+      livro: this.livroService.findById(this.livro.id)
+    }).subscribe(({ assuntos, autores, livro }) => {
+      this.assuntos = assuntos;
+      this.autores = autores;
+      this.livro = livro;
 
-  loadAutores(): void {
-    this.autorService.findAll().subscribe(resposta => {
-      this.autores = resposta;
-      this.syncSelectedValues();
-    });
-  }
-
-  findById(): void {
-    this.livroService.findById(this.livro.id).subscribe(resposta => {
-      this.livro = resposta;
       if (!this.livro.autores) {
         this.livro.autores = [];
       }
+
       this.syncSelectedValues();
     });
   }
