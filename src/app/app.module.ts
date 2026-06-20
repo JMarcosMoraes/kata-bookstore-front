@@ -45,6 +45,7 @@ import { AutorUpdateComponent } from './components/autor/autor-update/autor-upda
 import { LivroListComponent } from './components/livro/livro-list/livro-list.component';
 import { LivroCreateComponent } from './components/livro/livro-create/livro-create.component';
 import { LivroUpdateComponent } from './components/livro/livro-update/livro-update.component';
+import { BookstoreComponent } from './components/bookstores/bookstore/bookstore.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { LivroUpdateComponent } from './components/livro/livro-update/livro-upda
     AutorUpdateComponent,
     LivroListComponent,
     LivroCreateComponent,
-    LivroUpdateComponent
+    LivroUpdateComponent,
+    BookstoreComponent
   ],
   imports: [
     BrowserModule,

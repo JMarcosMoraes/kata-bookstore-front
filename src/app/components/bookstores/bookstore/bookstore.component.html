@@ -1,0 +1,38 @@
+<div class="bookstore-container">
+<h1 class="titulo">Bem-vindo à Bookstore</h1>
+  <!-- Filtros -->
+  <div class="filters">
+    <input
+      type="text"
+      placeholder="Filtrar por título"
+      [(ngModel)]="filtroTitulo"
+      (input)="filtrarLivros()"
+    />
+
+    <select [(ngModel)]="filtroAssunto" (change)="filtrarLivros()">
+      <option value="">Todos os assuntos</option>
+      <option *ngFor="let assunto of assuntos" [value]="assunto">
+        {{ assunto }}
+      </option>
+    </select>
+
+    <select [(ngModel)]="filtroAutor" (change)="filtrarLivros()">
+      <option value="">Todos os autores</option>
+      <option *ngFor="let autor of autores" [value]="autor">
+        {{ autor }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Lista de livros -->
+  <div class="livros-list">
+    <div *ngFor="let livro of livrosFiltrados" class="livro-card">
+      <h3>{{ livro.titulo }}</h3>
+      <p><strong>Editora:</strong> {{ livro.editora }}</p>
+      <p><strong>Edição:</strong> {{ livro.edicao }}</p>
+      <p><strong>Ano:</strong> {{ livro.anoPublicacao }}</p>
+      <p><strong>Assunto:</strong> {{ livro.assunto }}</p>
+      <p><strong>Autores:</strong> {{ livro.autores.join(', ') }}</p>
+    </div>
+  </div>
+</div>
