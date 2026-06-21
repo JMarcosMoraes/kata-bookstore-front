@@ -16,6 +16,8 @@ export class BookstoreComponent {
       editora: 'TechBooks',
       edicao: 2,
       anoPublicacao: '2023',
+      valor: 59.90,
+      quantidade: 10,
       assunto: {
         id: 1,
         descricao: 'Programação',
@@ -28,6 +30,8 @@ export class BookstoreComponent {
       editora: 'Prentice Hall',
       edicao: 1,
       anoPublicacao: '2008',
+      valor: 49.90,
+      quantidade: 5,
       assunto: {
         id: 2,
         descricao: 'Boas práticas',

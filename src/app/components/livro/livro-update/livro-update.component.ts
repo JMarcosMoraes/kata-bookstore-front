@@ -23,6 +23,8 @@ export class LivroUpdateComponent implements OnInit {
     editora: '',
     edicao: null,
     anoPublicacao: '',
+    valor: null,
+    quantidade: null,
     assunto: null,
     autores: []
   }
@@ -34,6 +36,8 @@ export class LivroUpdateComponent implements OnInit {
   editora: FormControl = new FormControl(null, Validators.minLength(3));
   edicao: FormControl = new FormControl(null, [Validators.min(1), Validators.pattern('^[0-9]+$')]);
   anoPublicacao: FormControl = new FormControl(null, [Validators.pattern('^[0-9]{4}$')]);
+  valor: FormControl = new FormControl(null, [Validators.min(0), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]);
+  quantidade: FormControl = new FormControl(null, [Validators.min(0), Validators.pattern('^[0-9]+$')]);
 
   constructor(
     private livroService: LivroService,

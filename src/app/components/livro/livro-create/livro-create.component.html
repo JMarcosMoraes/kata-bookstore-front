@@ -4,57 +4,91 @@
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Titulo</mat-label>
                 <input 
-                [(ngModel)]="livro.titulo"
-                name="titulo"
-                [formControl]="titulo"
-                matInput 
-                placeholder="Ex. João Silva"
-                maxlength="50">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    [(ngModel)]="livro.titulo"
+                    name="titulo"
+                    [formControl]="titulo"
+                    matInput 
+                    placeholder="Ex. João Silva"
+                    maxlength="50">
+                <mat-icon matSuffix>title</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Editora</mat-label>
                 <input 
-                [(ngModel)]="livro.editora"
-                name="editora"
-                [formControl]="editora"
-                matInput 
-                placeholder="Ex. João Silva"
-                maxlength="50">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    [(ngModel)]="livro.editora"
+                    name="editora"
+                    [formControl]="editora"
+                    matInput 
+                    placeholder="Ex. João Silva"
+                    maxlength="50">
+                <mat-icon matSuffix>business</mat-icon>
             </mat-form-field>
 
-            <mat-form-field class="fullWidth" appearance="legacy">
-                <mat-label>Edição</mat-label>
-                <input 
-                type="number"
-                min="1"
-                step="1"
-                [(ngModel)]="livro.edicao"
-                name="edicao"
-                [formControl]="edicao"
-                matInput 
-                placeholder="Ex. 1"
-                maxlength="5">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            </mat-form-field>
+            <div class="row">
+                <mat-form-field class="fullWidth" appearance="legacy">
+                    <mat-label>Edição</mat-label>
+                    <input 
+                    type="number"
+                    min="1"
+                    step="1"
+                    [(ngModel)]="livro.edicao"
+                    name="edicao"
+                    [formControl]="edicao"
+                    matInput 
+                    placeholder="Ex. 1"
+                    maxlength="5">
+                    <mat-icon matSuffix>menu_book</mat-icon>
+                </mat-form-field>
 
-            <mat-form-field class="fullWidth" appearance="legacy">
-                <mat-label>Ano de Publicação</mat-label>
-                <input 
-                type="number"
-                min="1000"
-                max="9999"
-                step="1"
-                [(ngModel)]="livro.anoPublicacao"
-                name="anoPublicacao"
-                [formControl]="anoPublicacao"
-                matInput 
-                placeholder="Ex. 2024"
-                maxlength="4">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            </mat-form-field>
+                <mat-form-field class="fullWidth" appearance="legacy">
+                    <mat-label>Ano de Publicação</mat-label>
+                    <input 
+                    type="number"
+                    min="1000"
+                    max="9999"
+                    step="1"
+                    [(ngModel)]="livro.anoPublicacao"
+                    name="anoPublicacao"
+                    [formControl]="anoPublicacao"
+                    matInput 
+                    placeholder="Ex. 2024"
+                    maxlength="4">
+                    <mat-icon matSuffix>calendar_today</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="halfWidth" appearance="legacy">
+                    <mat-label>Valor</mat-label>
+                    <input 
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    [(ngModel)]="livro.valor"
+                    name="valor"
+                    [formControl]="valor"
+                    matInput 
+                    placeholder="Ex. 59.90"
+                    maxlength="10">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                    </mat-form-field>
+
+                <mat-form-field class="halfWidth" appearance="legacy">
+                    <mat-label>Quantidade</mat-label>
+                    <input 
+                    type="number"
+                    min="0"
+                    step="1"
+                    [(ngModel)]="livro.quantidade"
+                    name="quantidade"
+                    [formControl]="quantidade"
+                    matInput 
+                    placeholder="Ex. 10"
+                    maxlength="5">
+                    <mat-icon matSuffix>inventory</mat-icon>
+                </mat-form-field>
+            </div>         
 
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Assunto</mat-label>
