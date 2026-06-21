@@ -15,6 +15,10 @@
     width: 100%;
 }
 
+.mediumWidth {
+    width: 50%;
+}
+
 h1, p {
     text-align: center;
 }
