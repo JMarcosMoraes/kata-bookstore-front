@@ -44,21 +44,33 @@
   <div class="livros-list">
     <mat-card *ngFor="let livro of livrosFiltrados" class="livro-card mat-elevation-z4">
       <mat-card-header>
-        <mat-card-title>{{ livro.titulo }}</mat-card-title>
-        <mat-card-subtitle>{{ livro.editora }}</mat-card-subtitle>
+        <div class="header-content">
+          <div class="titulo-editora">
+            <mat-card-title>{{ livro.titulo }}</mat-card-title>
+            <mat-card-subtitle>{{ livro.editora }}</mat-card-subtitle>
+          </div>
+          <div class="valor-quantidade">
+            <p><strong>Valor:</strong> {{ livro.valor | currency:'BRL':'symbol':'1.2-2' }}</p>
+            <p><strong>Qtd:</strong> {{ livro.quantidade }}</p>
+          </div>
+        </div>
       </mat-card-header>
+
       <mat-card-content>
         <p><strong>Edição:</strong> {{ livro.edicao }}</p>
         <p><strong>Ano:</strong> {{ livro.anoPublicacao }}</p>
         <p><strong>Assunto:</strong> {{ livro.assunto?.descricao }}</p>
-        <p>
-            <span *ngFor="let autor of livro.autores; let last = last">
-              {{ autor.nome }}<span *ngIf="!last">, </span>
-            </span>
+
+        <!-- Autores -->
+        <p><strong>Autores:</strong>
+          <span *ngFor="let autor of livro.autores; let last = last">
+            {{ autor.nome }}<span *ngIf="!last">, </span>
+          </span>
         </p>
       </mat-card-content>
     </mat-card>
+
   </div>
 
-  <p class="titulo">by José Marcos</p>
+   <p class="titulo-margin">by José Marcos</p>
 </div>

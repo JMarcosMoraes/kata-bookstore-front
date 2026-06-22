@@ -47,3 +47,31 @@
   border-radius: 8px;
   background: #f9f9f9;
 }
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* título à esquerda, valor/quantidade à direita */
+  align-items: center;
+  width: 100%;
+}
+
+.titulo-editora {
+  display: flex;
+  flex-direction: column;
+}
+
+.valor-quantidade {
+  display: flex;
+  gap: 16px; /* espaço entre valor e quantidade */
+}
+
+.valor-quantidade p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.titulo-margin {
+  margin-top: 24px; /* adiciona espaço acima */
+  text-align: center; /* opcional: centraliza o texto */
+  font-style: italic; /* opcional: dá um destaque */
+}
