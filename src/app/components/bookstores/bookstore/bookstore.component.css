@@ -1,6 +1,27 @@
+.container {
+    width: 95%;
+    margin: auto;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.mediumWidth {
+    width: 47%;
+}
+
 .bookstore-container {
   padding: 20px;
   font-family: Arial, sans-serif;
+}
+
+.container h1 {
+  margin-bottom: 24px; /* Espaço abaixo do título */
+}
+
+.container form {
+  margin-bottom: 32px; /* Espaço abaixo do formulário */
 }
 
 .titulo {

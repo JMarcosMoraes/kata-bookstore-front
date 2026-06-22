@@ -1,68 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Livro } from 'src/app/models/livros';
 import { Assunto } from 'src/app/models/assuntos';
 import { Autor } from 'src/app/models/autores';
+import { LivroService } from 'src/app/services/livro.service';
+import { AssuntoService } from 'src/app/services/assunto.service';
+import { AutorService } from 'src/app/services/autor.service';
 
 @Component({
   selector: 'app-bookstore',
   templateUrl: './bookstore.component.html',
   styleUrls: ['./bookstore.component.css']
 })
-export class BookstoreComponent {
-  livros: Livro[] = [
-    {
-      id: 1,
-      titulo: 'Angular Essencial',
-      editora: 'TechBooks',
-      edicao: 2,
-      anoPublicacao: '2023',
-      valor: 59.90,
-      quantidade: 10,
-      assunto: {
-        id: 1,
-        descricao: 'Programação',
-      },
-      autores: [{id:1, nome: 'João Silva'}, {id:2, nome: 'Maria Souza'}]
-    },
-    {
-      id: 2,
-      titulo: 'Clean Code',
-      editora: 'Prentice Hall',
-      edicao: 1,
-      anoPublicacao: '2008',
-      valor: 49.90,
-      quantidade: 5,
-      assunto: {
-        id: 2,
-        descricao: 'Boas práticas',
-      },
-      autores: [{id:3, nome: 'Robert C. Martin'}]
-    }
-  ];
+export class BookstoreComponent implements OnInit {
 
-  assuntos: Assunto[] = [
-    { id: 1, descricao: 'Programação' },
-    { id: 2, descricao: 'Boas práticas' },
-    { id: 3, descricao: 'Banco de Dados' }
-  ];
-  autores: Autor[] = [
-    { id: 1, nome: 'João Silva' },
-    { id: 2, nome: 'Maria Souza' },
-    { id: 3, nome: 'Robert C. Martin' }
-  ];
+  livros: Livro[] = [];
+  livrosFiltrados: Livro[] = [];
+  assuntos: Assunto[] = [];
+  autores: Autor[] = [];
 
   filtroTitulo: string = '';
   filtroAssunto: Assunto | null = null;
   filtroAutor: Autor | null = null;
 
-  livrosFiltrados: Livro[] = [...this.livros];
+  constructor(
+    private livroService: LivroService,
+    private assuntoService: AssuntoService,
+    private autorService: AutorService
+  ) {}
 
-  filtrarLivros() {
+  ngOnInit(): void {
+    this.carregarDados();
+  }
+
+  carregarDados(): void {
+    // Carrega livros
+    this.livroService.findAll().subscribe((res: Livro[]) => {
+      this.livros = res;
+      this.livrosFiltrados = [...this.livros];
+    });
+
+    // Carrega assuntos
+    this.assuntoService.findAll().subscribe((res: Assunto[]) => {
+      this.assuntos = res;
+    });
+
+    // Carrega autores
+    this.autorService.findAll().subscribe((res: Autor[]) => {
+      this.autores = res;
+    });
+  }
+
+  filtrarLivros(): void {
     this.livrosFiltrados = this.livros.filter(livro => {
       const tituloOk = livro.titulo.toLowerCase().includes(this.filtroTitulo.toLowerCase());
-      const assuntoOk = this.filtroAssunto ? livro.assunto === this.filtroAssunto : true;
-      const autorOk = this.filtroAutor ? livro.autores.includes(this.filtroAutor) : true;
+      const assuntoOk = this.filtroAssunto ? livro.assunto.id === this.filtroAssunto.id : true;
+      const autorOk = this.filtroAutor ? livro.autores.some(a => a.id === this.filtroAutor.id) : true;
       return tituloOk && assuntoOk && autorOk;
+    });
+  }
+
+  delete(id: number): void {
+    this.livroService.delete(id).subscribe(() => {
+      this.livros = this.livros.filter(l => l.id !== id);
+      this.filtrarLivros();
     });
   }
 }
