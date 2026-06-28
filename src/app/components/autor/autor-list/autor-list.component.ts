@@ -45,21 +45,24 @@ export class AutorListComponent implements OnInit {
   }
 
   delete(id: any): void {
-    this.service.delete(id).subscribe(() => {
-      this.toast.success('Autor excluído com sucesso', 'Delete');
-      this.findAll();
-      }, ex => {
-      console.log(ex);
-        if(ex.error.errors) {
-          ex.error.errors.forEach(element => {
-            this.toast.error(element.message);          
-          });
-        } else {
-          this.toast.error(ex.error.message);
-        }      
-      }
-    )
-  }  
+     const confirmDelete = window.confirm('Tem certeza que deseja excluir este autor?');
 
+    if (confirmDelete) {
+      this.service.delete(id).subscribe(() => {
+        this.toast.success('Autor excluído com sucesso', 'Delete');
+        this.findAll();
+        }, ex => {
+        console.log(ex);
+          if(ex.error.errors) {
+            ex.error.errors.forEach(element => {
+              this.toast.error(element.message);          
+            });
+          } else {
+            this.toast.error(ex.error.message);
+          }      
+        }
+      )
+    }  
+  }
 }
 
