@@ -9,7 +9,8 @@
                 [formControl]="nome"
                 matInput 
                 placeholder="Ex. João Silva"
-                maxlength="50">
+                maxlength="40"
+                pattern="^[\\p{L}0-9 ]*$">
                 <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
