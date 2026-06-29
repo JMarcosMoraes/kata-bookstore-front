@@ -29,13 +29,13 @@ button.icon-delete {
 }
 
 .export-button {
-  margin-right: 10px; /* espaçamento horizontal entre os botões */
-  margin-top: 20px;   /* espaçamento vertical */
+  margin-right: 10px;
+  margin-top: 20px;
 }
 
 .botoes-relatorio {
-  display: flex;              /* coloca os botões lado a lado */
-  gap: 15px;                  /* espaçamento entre eles */
-  justify-content: center;    /* centraliza na tela (opcional) */
-  margin: 20px 0;             /* espaçamento acima e abaixo da div */
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
 }
