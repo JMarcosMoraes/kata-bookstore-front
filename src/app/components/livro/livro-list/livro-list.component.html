@@ -41,5 +41,13 @@
                        aria-label="Select page of periodic elements">
         </mat-paginator>
       </div>
-      <button type="button" mat-flat-button color="accent" class="export-button" (click)="exportPdf()">Exportar PDF</button>
+      <div class="botoes-relatorio">
+        <button type="button" mat-flat-button color="accent" 
+                class="export-button mat-stroked-button mat-elevation-z8" 
+                (click)="exportPdfAutor()">Relatório Autor/Livros</button>
+
+        <button type="button" mat-flat-button color="accent" 
+                class="export-button mat-stroked-button mat-elevation-z8" 
+                (click)="exportPdf()">Relatório Inventário</button>
+      </div>
 </div>

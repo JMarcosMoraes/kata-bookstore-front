@@ -33,6 +33,12 @@ export class LivroService {
     });
   }
 
+  relatorioPdfAutor(): Observable<Blob> {
+    return this.http.get(`${API_CONFIG.baseUrl}/livros/relatorio/autor-livro`, {
+      responseType: 'blob'
+    });
+  }
+
   delete(id: any): Observable<Livro> {
     return this.http.delete<Livro>(`${API_CONFIG.baseUrl}/livros/${id}`);
   }

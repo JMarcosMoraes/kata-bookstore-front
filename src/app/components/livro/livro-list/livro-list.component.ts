@@ -53,6 +53,20 @@ export class LivroListComponent implements OnInit {
     });
   }
 
+  exportPdfAutor(): void {
+    this.service.relatorioPdfAutor().subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'autor-livros.pdf';
+      link.click();
+      window.URL.revokeObjectURL(url);
+    }, err => {
+      this.toast.error('Erro ao gerar o relatório em PDF', 'Exportar PDF');
+      console.error(err);
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
