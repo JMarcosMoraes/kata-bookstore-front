@@ -6,15 +6,24 @@
     box-sizing: border-box;
 }
 
+.form {
+    width: 90%;
+    margin: 0 auto;
+}
+
 .fullWidth {
     width: 100%;
 }
+
 h1, p {
     text-align: center;
 }
+
 img {
     height: 6rem;
-    margin: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0.5rem auto 1rem;
 }
 
 .section {
@@ -24,8 +33,9 @@ img {
 }
 
 button {
-    margin-top: .5rem;
+    margin-top: .75rem;
 }
+
 p {
     margin-top: 1rem;
     opacity: .7;
@@ -37,4 +47,23 @@ mat-form-field {
 
 matInput {
     opacity: .8;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    img {
+        height: 5rem;
+    }
+
+    .section {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    button {
+        width: 100%;
+    }
 }
