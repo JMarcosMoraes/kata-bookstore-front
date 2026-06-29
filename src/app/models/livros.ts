@@ -8,7 +8,7 @@ export interface Livro {
     edicao: number;
     anoPublicacao: string;
     valor: number;
-    quantidade: number; 
-    assunto: Assunto;
+    quantidade: number;     
+    assuntos: Assunto[];
     autores: Autor[];
 }

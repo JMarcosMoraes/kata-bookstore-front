@@ -24,7 +24,7 @@ export class LivroCreateComponent implements OnInit {
     anoPublicacao: '',
     valor: null,
     quantidade: null,
-    assunto: null,
+    assuntos: [],
     autores: []
   }
 
@@ -64,8 +64,8 @@ export class LivroCreateComponent implements OnInit {
   }
 
   create(): void {
-    if (!this.livro.assunto) {
-      this.toast.error('Selecione um assunto antes de cadastrar', 'Validação');
+    if (!this.livro.assuntos || this.livro.assuntos.length === 0) {
+      this.toast.error('Selecione pelo menos um assunto antes de cadastrar', 'Validação');
       return;
     }
 

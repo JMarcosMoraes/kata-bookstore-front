@@ -100,8 +100,8 @@
         </div>
 
         <mat-form-field class="fullWidth" appearance="legacy">
-            <mat-label>Assunto</mat-label>
-            <mat-select [(ngModel)]="livro.assunto" required name="assunto" [compareWith]="compareAssunto">
+            <mat-label>Assuntos</mat-label>
+            <mat-select [(ngModel)]="livro.assuntos" required name="assuntos" multiple [compareWith]="compareAssunto">
                 <mat-option *ngFor="let item of assuntos" [value]="item">
                     {{ item.descricao }}
                 </mat-option>

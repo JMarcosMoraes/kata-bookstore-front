@@ -53,7 +53,7 @@ export class BookstoreComponent implements OnInit {
   filtrarLivros(): void {
     this.livrosFiltrados = this.livros.filter(livro => {
       const tituloOk = livro.titulo.toLowerCase().includes(this.filtroTitulo.toLowerCase());
-      const assuntoOk = this.filtroAssunto ? livro.assunto.id === this.filtroAssunto.id : true;
+      const assuntoOk = this.filtroAssunto ? livro.assuntos.some(a => a.id === this.filtroAssunto.id) : true;
       const autorOk = this.filtroAutor ? livro.autores.some(a => a.id === this.filtroAutor.id) : true;
       return tituloOk && assuntoOk && autorOk;
     });

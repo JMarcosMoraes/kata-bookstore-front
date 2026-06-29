@@ -59,7 +59,12 @@
       <mat-card-content>
         <p><strong>Edição:</strong> {{ livro.edicao }}</p>
         <p><strong>Ano:</strong> {{ livro.anoPublicacao }}</p>
-        <p><strong>Assunto:</strong> {{ livro.assunto?.descricao }}</p>
+        <!-- Assuntos-->
+        <p><strong>Assunto:</strong> 
+          <span *ngFor="let assunto of livro.assuntos; let last = last">
+            {{ assunto.descricao }}<span *ngIf="!last">, </span>
+          </span>          
+        </p>
 
         <!-- Autores -->
         <p><strong>Autores:</strong>

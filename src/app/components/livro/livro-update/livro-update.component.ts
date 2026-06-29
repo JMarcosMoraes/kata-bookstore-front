@@ -25,7 +25,7 @@ export class LivroUpdateComponent implements OnInit {
     anoPublicacao: '',
     valor: null,
     quantidade: null,
-    assunto: null,
+    assuntos: [],
     autores: []
   }
 
@@ -72,14 +72,13 @@ private syncSelectedValues(): void {
   if (this.livro.autores && this.livro.autores.length && this.autores.length) {
       this.livro.autores = this.autores.filter(a =>
       this.livro.autores.some(livroAutor => livroAutor.id === a.id)
-    );
+    );    
   }
 
-  if (this.livro.assunto && this.assuntos.length) {
-    const selectedAssunto = this.assuntos.find(a => a.id === this.livro.assunto.id);
-    if (selectedAssunto) {
-      this.livro.assunto = selectedAssunto;
-    }
+  if (this.livro.assuntos && this.livro.assuntos.length && this.assuntos.length) {
+      this.livro.assuntos = this.assuntos.filter(a =>
+      this.livro.assuntos.some(livroAssunto => livroAssunto.id === a.id)
+    );
   }
  }
 
@@ -93,8 +92,8 @@ private syncSelectedValues(): void {
 
 
   update(): void {
-    if (!this.livro.assunto) {
-      this.toast.error('Selecione um assunto antes de atualizar', 'Validação');
+    if (!this.livro.assuntos || this.livro.assuntos.length === 0) {
+      this.toast.error('Selecione pelo menos um assunto antes de atualizar', 'Validação');
       return;
     }
 

@@ -99,8 +99,8 @@
             </div>         
 
             <mat-form-field class="fullWidth" appearance="legacy">
-                <mat-label>Assunto</mat-label>
-                <mat-select [(ngModel)]="livro.assunto" required name="assunto">
+                <mat-label>Assuntos</mat-label>
+                <mat-select [(ngModel)]="livro.assuntos" required name="assuntos" multiple>
                     <mat-option *ngFor="let item of assuntos" [value]="item">
                         {{ item.descricao }}
                     </mat-option>
