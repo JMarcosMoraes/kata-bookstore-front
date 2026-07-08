@@ -17,9 +17,19 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.router.navigate(['Autores']);
     this.router.navigate(['home']);
   }
+
+  hasAnyRole(roles: string[]): boolean {
+    console.log('hasAnyRole called with roles:', roles);
+    return this.authService.hasAnyRole(roles);
+  }
+
+  getUserRoles(): string[] {
+    console.log('getUserRoles called', this.authService.getRoles());
+    return this.authService.getRoles();
+  }
+
   logout(){
     this.router.navigate(['login']);
     this.authService.logout();

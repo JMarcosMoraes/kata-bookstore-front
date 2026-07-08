@@ -19,25 +19,36 @@ import { LivroCreateComponent } from './components/livro/livro-create/livro-crea
 import { LivroUpdateComponent } from './components/livro/livro-update/livro-update.component';
 
 import { BookstoreComponent } from './components/bookstores/bookstore/bookstore.component';
+import { UsuarioListComponent } from './components/usuario/usuario-list/usuario-list.component';
+import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {
-    path: '', component: NavComponent, canActivate: [AuthGuard], children: [
+    path: '', component: NavComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
        {path: 'home', component: HomeComponent},
+       
+       {path: 'usuarios', component: UsuarioListComponent},
+       {path: 'usuarios/create', component: UsuarioCreateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'usuarios/update/:id', component: UsuarioUpdateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'usuarios/delete/:id', component: UsuarioListComponent, data: { roles: ['ADMIN'] }},
+       
        {path: 'assuntos', component: AssuntoListComponent},
-       {path: 'assuntos/create', component: AssuntoCreateComponent},
-       {path: 'assuntos/update/:id', component: AssuntoUpdateComponent},
-       {path: 'assuntos/delete/:id', component: AssuntoListComponent},
+       {path: 'assuntos/create', component: AssuntoCreateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'assuntos/update/:id', component: AssuntoUpdateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'assuntos/delete/:id', component: AssuntoListComponent, data: { roles: ['ADMIN'] }},
+       
        {path: 'autores', component: AutorListComponent},
-       {path: 'autores/create', component: AutorCreateComponent},
-       {path: 'autores/update/:id', component: AutorUpdateComponent},
-       {path: 'autores/delete/:id', component: AutorListComponent},
+       {path: 'autores/create', component: AutorCreateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'autores/update/:id', component: AutorUpdateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'autores/delete/:id', component: AutorListComponent, data: { roles: ['ADMIN'] }},
+       
        {path: 'livros', component: LivroListComponent},
-       {path: 'livros/create', component: LivroCreateComponent},
-       {path: 'livros/update/:id', component: LivroUpdateComponent},
-       {path: 'livros/delete/:id', component: LivroListComponent},
-       {path: 'livros', component: LivroListComponent},
+       {path: 'livros/create', component: LivroCreateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'livros/update/:id', component: LivroUpdateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'livros/delete/:id', component: LivroListComponent, data: { roles: ['ADMIN'] }},       
+       
        {path: 'bookstore', component: BookstoreComponent}
     ] 
 }];

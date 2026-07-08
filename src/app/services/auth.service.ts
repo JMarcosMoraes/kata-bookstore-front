@@ -19,16 +19,64 @@ export class AuthService {
   }
 
   successfulLogin(authToken: string) {
-    localStorage.setItem('token', authToken) 
+    localStorage.setItem('token', authToken)
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  getDecodedToken(): any {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+    return this.jwtService.decodeToken(token);
+  }
+
+  getRoles(): string[] {
+    const payload = this.getDecodedToken();
+    console.log('getRoles called, payload:', payload);
+    if (!payload) {
+      return [];
+    }
+
+    const roles = payload.roles || payload.authorities || payload.authority || payload.perfil;
+    console.log('Roles:', roles);
+    if (!roles) {
+      return [];
+    }
+
+    if (Array.isArray(roles)) {
+      console.log('getRoles called, roles:', roles.toString());
+      return roles.map(role => role.toString());
+    }
+    
+    console.log('getRoles called, roles:', roles.toString());
+    return [roles.toString()];
+  }
+
+  hasAnyRole(requiredRoles: string[]): boolean {
+    const tokenRoles = this.getRoles().map(role => role.toUpperCase());
+    
+    console.log('--- > hasAnyRole called, tokenRoles:', tokenRoles);
+
+    return requiredRoles.some(required => {
+      const normalized = required.toUpperCase();
+      return tokenRoles.includes(normalized)
+        || tokenRoles.includes(`ROLE_${normalized}`)
+        || tokenRoles.includes(normalized.replace(/^ROLE_/, ''));
+    });
   }
 
   isAuthenticated() {
-    let token = localStorage.getItem('token')
+    let token = this.getToken();
     if (token != null) {
-      return !this.jwtService.isTokenExpired(token)
+      return !this.jwtService.isTokenExpired(token);
     }
-      return false
+    return false;
   }
+
   logout(){
     localStorage.clear();
   }

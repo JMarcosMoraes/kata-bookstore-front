@@ -29,15 +29,15 @@ import { MatCardModule } from '@angular/material/card';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
+import { UsuarioListComponent } from './components/usuario/usuario-list/usuario-list.component';
 import { AssuntoListComponent } from './components/assunto/assunto-list/assunto-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor, AuthInterceptorProvider } from './interceptors/auth.interceptor';
-import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
+import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
 import { AssuntoCreateComponent } from './components/assunto/assunto-create/assunto-create.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
+import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
 import { AssuntoUpdateComponent } from './components/assunto/assunto-update/assunto-update.component';
 import { AutorListComponent } from './components/autor/autor-list/autor-list.component';
 import { AutorCreateComponent } from './components/autor/autor-create/autor-create.component';
@@ -53,10 +53,10 @@ import { BookstoreComponent } from './components/bookstores/bookstore/bookstore.
     NavComponent,
     HomeComponent,
     HeaderComponent,
-    TecnicoListComponent,
+    UsuarioListComponent,
     LoginComponent,
-    TecnicoCreateComponent,
-    TecnicoUpdateComponent,
+    UsuarioCreateComponent,
+    UsuarioUpdateComponent,
     AssuntoListComponent,
     AssuntoCreateComponent,
     AssuntoUpdateComponent,

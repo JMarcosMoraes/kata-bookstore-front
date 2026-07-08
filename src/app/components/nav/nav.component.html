@@ -3,28 +3,31 @@
         
         <mat-nav-list class="nav-list">
             
-         <a mat-list-item routerLink="home">
+            <a mat-list-item routerLink="home">
                 <i class="material-icons">home</i>
                 Home
             </a>
-
-            <a mat-list-item routerLink="assuntos">
+            <a mat-list-item routerLink="usuarios" *ngIf="hasAnyRole(['ADMIN'])">
+                <i class="material-icons">clear_all</i>
+                Usuário
+            </a>
+            <a mat-list-item routerLink="assuntos" *ngIf="hasAnyRole(['ADMIN'])">
                 <i class="material-icons">clear_all</i>
                 Assunto
             </a>
 
-            <a mat-list-item routerLink="autores">
+            <a mat-list-item routerLink="autores" *ngIf="hasAnyRole(['ADMIN'])">
                 <i class="material-icons">person</i>
                 Autor
              </a>
-             <a mat-list-item routerLink="livros">
+             <a mat-list-item routerLink="livros" *ngIf="hasAnyRole(['ADMIN'])">
                 <i class="material-icons">account_balance_wallet</i>
                 Livros
              </a>
              <a mat-list-item routerLink="bookstore">
                 <i class="material-icons">credit_card</i>
                 Bookstore
-             </a>
+             </a>           
              <a mat-list-item href="https://github.com/JMarcosMoraes/kata-bookstore-front" target="_blank">
                 <i class="material-icons">code</i>
                 Bookstore SPA
@@ -37,7 +40,6 @@
                 <i class="material-icons">code</i>
                 Swagger API
              </a>      
-                          
              <a mat-list-item (click)="logout()">
                 <i class="material-icons">logout</i>
                 Logout

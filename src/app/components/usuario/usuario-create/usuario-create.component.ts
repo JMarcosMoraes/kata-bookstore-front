@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Tecnico } from 'src/app/models/tecnicos';
-import { TecnicoService } from 'src/app/services/tecnico.service';
+import { Usuario } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-tecnico-create',
-  templateUrl: './tecnico-create.component.html',
-  styleUrls: ['./tecnico-create.component.css']
+  selector: 'app-usuario-create',
+  templateUrl: './usuario-create.component.html',
+  styleUrls: ['./usuario-create.component.css']
 })
-export class TecnicoCreateComponent implements OnInit {
+export class UsuarioCreateComponent implements OnInit {
 
-  tecnico: Tecnico = {
+  usuario: Usuario = {
     nome: '',
     cpf: '',
     email: '',
@@ -27,7 +27,7 @@ export class TecnicoCreateComponent implements OnInit {
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
   constructor(
-    private service: TecnicoService,
+    private service: UsuarioService,
     private toast: ToastrService,
     private router: Router,
   ) { }
@@ -35,9 +35,9 @@ export class TecnicoCreateComponent implements OnInit {
   ngOnInit(): void {}
 
   create(): void {
-    this.service.create(this.tecnico).subscribe(() => {
-      this.toast.success('Técnico Cadastrado com sucesso', 'Cadastro');
-      this.router.navigate(['tecnicos']);
+    this.service.create(this.usuario).subscribe(() => {
+      this.toast.success('Usuário Cadastrado com sucesso', 'Cadastro');
+      this.router.navigate(['usuarios']);
       }, ex => {
       console.log(ex);
         if(ex.error.errors) {
@@ -53,10 +53,10 @@ export class TecnicoCreateComponent implements OnInit {
 
   addPerfil(perfil: any): void {
     
-    if(this.tecnico.perfis.includes(perfil)){
-      this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);      
+    if(this.usuario.perfis.includes(perfil)){
+      this.usuario.perfis.splice(this.usuario.perfis.indexOf(perfil), 1);      
     } else {
-      this.tecnico.perfis.push(perfil);        
+      this.usuario.perfis.push(perfil);        
     }
   }
 

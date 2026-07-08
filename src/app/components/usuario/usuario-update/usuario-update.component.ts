@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Tecnico } from 'src/app/models/tecnicos';
-import { TecnicoService } from 'src/app/services/tecnico.service';
+import { Usuario } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-tecnico-update',
-  templateUrl: './tecnico-update.component.html',
-  styleUrls: ['./tecnico-update.component.css']
+  selector: 'app-usuario-update',
+  templateUrl: './usuario-update.component.html',
+  styleUrls: ['./usuario-update.component.css']
 })
-export class TecnicoUpdateComponent implements OnInit {
+export class UsuarioUpdateComponent implements OnInit {
 
-  tecnico: Tecnico = {
+  usuario: Usuario = {
     id:     '',
     nome:   '',
     cpf:    '',
@@ -28,28 +28,28 @@ export class TecnicoUpdateComponent implements OnInit {
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
   constructor(
-    private service: TecnicoService,
+    private service: UsuarioService,
     private toast: ToastrService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.usuario.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   findById(): void {
-    this.service.findById(this.tecnico.id).subscribe(resposta => {
+    this.service.findById(this.usuario.id).subscribe(resposta => {
       resposta.perfis = [];  
-      this.tecnico = resposta;
+      this.usuario = resposta;
       })
    }
   
   update(): void {
-    this.service.update(this.tecnico).subscribe(() => {
-      this.toast.success('Técnico Atualizado com sucesso', 'Update');
-      this.router.navigate(['tecnicos']);
+    this.service.update(this.usuario).subscribe(() => {
+      this.toast.success('Usuário Atualizado com sucesso', 'Update');
+      this.router.navigate(['usuarios']);
       }, ex => {
       console.log(ex);
         if(ex.error.errors) {
@@ -65,10 +65,10 @@ export class TecnicoUpdateComponent implements OnInit {
 
   addPerfil(perfil: any): void {
     
-    if(this.tecnico.perfis.includes(perfil)){
-      this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);      
+    if(this.usuario.perfis.includes(perfil)){
+      this.usuario.perfis.splice(this.usuario.perfis.indexOf(perfil), 1);      
     } else {
-      this.tecnico.perfis.push(perfil);        
+      this.usuario.perfis.push(perfil);        
     }
   }
 

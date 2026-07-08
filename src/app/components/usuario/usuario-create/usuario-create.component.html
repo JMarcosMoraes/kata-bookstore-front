@@ -1,16 +1,15 @@
 <div class="container mat-elevation-z8">
     <form class="form">
-        <h1>Cadastrar Técnico</h1>
-        <img class="fullWidth" src="assets/img/tecnico-create.svg" alt="Técnico">
+        <h1>Cadastrar Usuário</h1>        
         <section class="section">
             <mat-checkbox (click)="addPerfil(0)" color="primary" class="margin">Admin</mat-checkbox>
             <mat-checkbox (click)="addPerfil(1)" color="primary" class="margin">Cliente</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(2)" color="primary" class="margin">Técnico</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(2)" color="primary" class="margin">Usuário</mat-checkbox>
         </section>
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Nome</mat-label>
                 <input 
-                [(ngModel)]="tecnico.nome"
+                [(ngModel)]="usuario.nome"
                 name="nome"
                 [formControl]="nome"
                 required
@@ -23,7 +22,7 @@
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>CPF</mat-label>
                 <input 
-                [(ngModel)]="tecnico.cpf"
+                [(ngModel)]="usuario.cpf"
                 name="cpf"
                 [formControl]="cpf"
                 required
@@ -37,19 +36,19 @@
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>E-mail</mat-label>
                 <input
-                [(ngModel)]="tecnico.email"
+                [(ngModel)]="usuario.email"
                 name="email" 
                 [formControl]="email"
                 required
                 matInput 
-                placeholder="nomeTecnico@mail.com">
+                placeholder="nomeUsuario@mail.com">
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             
             <mat-form-field class="fullWidth" appearance="legacy">
                 <mat-label>Senha</mat-label>
                 <input
-                [(ngModel)]="tecnico.senha"
+                [(ngModel)]="usuario.senha"
                 name="senha"
                 [formControl]="senha" 
                 required
