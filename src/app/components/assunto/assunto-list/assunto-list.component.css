@@ -28,4 +28,8 @@ button.icon-delete {
     justify-content: center;
 }
 
+.swal2-container {
+  background-color: transparent !important; /* remove faixa branca */
+}
+
   

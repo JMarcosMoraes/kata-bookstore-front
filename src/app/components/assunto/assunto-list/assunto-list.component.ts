@@ -49,6 +49,7 @@ export class AssuntoListComponent implements OnInit {
       title: 'Tem certeza?',
       text: 'Você não poderá reverter esta ação!',
       icon: 'warning',
+      backdrop: false,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

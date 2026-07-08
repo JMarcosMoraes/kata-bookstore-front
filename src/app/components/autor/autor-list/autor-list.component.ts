@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Autor } from 'src/app/models/autores';
 import { AutorService } from 'src/app/services/autor.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -45,12 +46,20 @@ export class AutorListComponent implements OnInit {
   }
 
   delete(id: any): void {
-     const confirmDelete = window.confirm('Tem certeza que deseja excluir este autor?');
-
-    if (confirmDelete) {
-      this.service.delete(id).subscribe(() => {
-        this.toast.success('Autor excluído com sucesso', 'Delete');
-        this.findAll();
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você não poderá reverter esta ação!',
+      icon: 'warning',
+      backdrop: false,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, exclua!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.delete(id).subscribe(() => {
+          this.toast.success('Autor excluído com sucesso', 'Delete');
+          this.findAll();
         }, ex => {
         console.log(ex);
           if(ex.error.errors) {
@@ -63,6 +72,7 @@ export class AutorListComponent implements OnInit {
         }
       )
     }  
-  }
+  })
+ }
 }
 
