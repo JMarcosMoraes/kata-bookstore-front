@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Livro } from 'src/app/models/livros';
 import { LivroService } from 'src/app/services/livro.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -73,10 +74,19 @@ export class LivroListComponent implements OnInit {
   }
 
   delete(id: any): void {
-    if (confirm('Tem certeza que deseja excluir este livro?')) {
-      this.service.delete(id).subscribe(() => {
-        this.toast.success('Livro excluído com sucesso', 'Delete');
-        this.findAll();
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você não poderá reverter esta ação!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, exclua!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.delete(id).subscribe(() => {
+          this.toast.success('Livro excluído com sucesso', 'Delete');
+          this.findAll();
         }, ex => {
         console.log(ex);
           if(ex.error.errors) {
@@ -89,5 +99,6 @@ export class LivroListComponent implements OnInit {
         }
       )
     }
+   })
   }
 }
