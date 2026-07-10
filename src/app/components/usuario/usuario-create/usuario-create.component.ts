@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -21,6 +21,8 @@ export class UsuarioCreateComponent implements OnInit {
     dataCriacao: ''
   }
 
+  isPublicRegistration = false;
+
   nome: FormControl = new FormControl(null, Validators.minLength(3));
   cpf: FormControl = new FormControl(null, Validators.required);
   email: FormControl = new FormControl(null, Validators.email);
@@ -30,14 +32,24 @@ export class UsuarioCreateComponent implements OnInit {
     private service: UsuarioService,
     private toast: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isPublicRegistration = this.route.snapshot.routeConfig?.path === 'register';
+    if (this.isPublicRegistration) {
+      this.usuario.perfis = ['1'];
+    }
+  }
 
   create(): void {
     this.service.create(this.usuario).subscribe(() => {
-      this.toast.success('Usuário Cadastrado com sucesso', 'Cadastro');
-      this.router.navigate(['usuarios']);
+      this.toast.success('Usuário cadastrado com sucesso', 'Cadastro');
+      if (this.isPublicRegistration) {
+        this.router.navigate(['login']);
+      } else {
+        this.router.navigate(['usuarios']);
+      }
       }, ex => {
       console.log(ex);
         if(ex.error.errors) {
@@ -61,7 +73,8 @@ export class UsuarioCreateComponent implements OnInit {
   }
 
   validaCampos(): boolean {
-    return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid
+    const basicValid = this.nome.valid && this.email.valid && this.senha.valid;
+    return this.isPublicRegistration ? basicValid : basicValid && this.cpf.valid;
   }
 
 }

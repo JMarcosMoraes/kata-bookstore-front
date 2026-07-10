@@ -25,12 +25,13 @@ import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usua
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: UsuarioCreateComponent },
+  
   {
     path: '', component: NavComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
        {path: 'home', component: HomeComponent},
-       
        {path: 'usuarios', component: UsuarioListComponent},
-       {path: 'usuarios/create', component: UsuarioCreateComponent, data: { roles: ['ADMIN'] }},
+       {path: 'usuarios/create', component: UsuarioCreateComponent},      
        {path: 'usuarios/update/:id', component: UsuarioUpdateComponent, data: { roles: ['ADMIN'] }},
        {path: 'usuarios/delete/:id', component: UsuarioListComponent, data: { roles: ['ADMIN'] }},
        
