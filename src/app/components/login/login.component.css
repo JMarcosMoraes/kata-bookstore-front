@@ -72,14 +72,37 @@ body {
     margin-bottom: 1rem;
 }
 
-button.full-width {
-    margin-top: 1rem;
+.login-button {
+    margin-top: 0.5rem;
     padding: 0.95rem 1rem;
     border-radius: 0.9rem;
     font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 20px rgba(20, 44, 108, 0.18);
 }
 
-button.full-width:hover {
+.login-button:hover {
     filter: brightness(1.05);
+}
+
+.login-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #334d8f;
+}
+
+.login-footer a {
+    color: #183a8f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
 }
 

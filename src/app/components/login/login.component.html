@@ -23,7 +23,7 @@
             type="password"
             matInput placeholder="ex. 123">
         </mat-form-field>
-        <button (click)="logar()" [disabled]="!validaCampos()" class="full-width mat-elevation-z4" mat-stroked-button color="primary">Login</button>
+        <button (click)="logar()" [disabled]="!validaCampos()" class="full-width login-button" mat-flat-button color="primary">Entrar</button>
         <div class="login-footer">
           <span>Não tem conta?</span>
           <a routerLink="/register">Cadastre-se</a>

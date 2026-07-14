@@ -1,35 +1,82 @@
 .container {
-    width: 35rem;
-    margin: auto;
-    padding: 1rem 1rem 1rem 1rem;
-    border-radius: .6rem;
+    width: min(35rem, 100%);
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: .8rem;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.form {
+    width: 90%;
+    margin: 0 auto;
 }
 
 .fullWidth {
     width: 100%;
 }
+
 h1, p {
     text-align: center;
 }
-img {
-    height: 6rem;
-    margin: auto;
+
+h1 {
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .section {
     margin-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.margin {
+    margin: 0.25rem 0;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 button {
-    margin-top: .5rem;
+    margin-top: 0;
 }
+
 p {
     margin-top: 1rem;
-    opacity: .5;
+    opacity: .7;
+}
+
+mat-form-field {
+    width: 100%;
 }
 
 matInput {
     opacity: .8;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .section {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .margin {
+        width: 100%;
+    }
+
+    .button-group {
+        gap: 0.65rem;
+    }
 }

@@ -1,35 +1,123 @@
 .container {
-    width: 35rem;
-    margin: auto;
-    padding: 1rem 1rem 1rem 1rem;
-    border-radius: .6rem;
+    width: min(35rem, 100%);
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: .8rem;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.container.login-background {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem 1rem;
+    border-radius: 0;
+    background: url('../../../../assets/img/img_fundo.png') no-repeat center center;
+    background-size: cover;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container.login-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 28, 75, 0.65);
+}
+
+.form {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.container.login-background .form {
+    width: min(26rem, 100%);
+    background: rgba(255, 255, 255, 0.96);
+    padding: 2rem 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 .fullWidth {
     width: 100%;
 }
+
 h1, p {
     text-align: center;
 }
-img {
-    height: 6rem;
-    margin: auto;
+
+h1 {
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .section {
     margin-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.margin {
+    margin: 0.25rem 0;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 button {
-    margin-top: .5rem;
+    margin-top: 0;
 }
+
 p {
     margin-top: 1rem;
-    opacity: .5;
+    opacity: .7;
+}
+
+.container.login-background p {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    opacity: 0.9;
+}
+
+mat-form-field {
+    width: 100%;
 }
 
 matInput {
     opacity: .8;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .section {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .margin {
+        width: 100%;
+    }
+
+    .button-group {
+        gap: 0.65rem;
+    }
 }
