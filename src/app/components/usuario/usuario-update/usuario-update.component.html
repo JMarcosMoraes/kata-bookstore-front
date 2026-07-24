@@ -3,9 +3,8 @@
         <h1>Atualizar Usuário</h1>
 
         <section class="section">
-            <mat-checkbox (click)="addPerfil(0)" color="primary" class="margin">Admin</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(1)" color="primary" [checked]="true" class="margin">Cliente</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(2)" color="primary" class="margin">Usuário</mat-checkbox>
+            <mat-checkbox (change)="addPerfil(0)" [checked]="hasPerfil(0)" color="primary" class="margin">Admin</mat-checkbox>
+            <mat-checkbox (change)="addPerfil(1)" [checked]="hasPerfil(1)" color="primary" class="margin">Cliente</mat-checkbox>
         </section>
 
         <mat-form-field class="fullWidth" appearance="legacy">

@@ -39,14 +39,75 @@ export class UsuarioUpdateComponent implements OnInit {
     this.findById();
   }
 
+  private normalizarPerfis(perfis: any): number[] {
+    if (perfis == null) {
+      return [];
+    }
+
+    if (!Array.isArray(perfis)) {
+      perfis = [perfis];
+    }
+
+    const mapaPerfis: Record<string, number> = {
+      ADMIN: 0,
+      CLIENTE: 1,
+      USUARIO: 2,
+      ROLE_ADMIN: 0,
+      ROLE_CLIENTE: 1,
+      ROLE_USUARIO: 2
+    };
+
+    return perfis
+      .map(perfil => {
+        if (typeof perfil === 'number' && Number.isFinite(perfil)) {
+          return perfil;
+        }
+
+        if (typeof perfil === 'string') {
+          const chave = perfil.trim().toUpperCase();
+          if (mapaPerfis[chave] !== undefined) {
+            return mapaPerfis[chave];
+          }
+
+          const numero = Number(chave);
+          return Number.isNaN(numero) ? null : numero;
+        }
+
+        if (perfil && typeof perfil === 'object') {
+          const valor = perfil.id ?? perfil.codigo ?? perfil.value;
+
+          if (typeof valor === 'number') {
+            return valor;
+          }
+
+          if (typeof valor === 'string') {
+            const chave = valor.trim().toUpperCase();
+            if (mapaPerfis[chave] !== undefined) {
+              return mapaPerfis[chave];
+            }
+
+            const numero = Number(chave);
+            return Number.isNaN(numero) ? null : numero;
+          }
+        }
+
+        return null;
+      })
+      .filter((perfil): perfil is number => perfil !== null);
+  }
+
   findById(): void {
     this.service.findById(this.usuario.id).subscribe(resposta => {
-      resposta.perfis = [];  
-      this.usuario = resposta;
-      })
+      this.usuario = {
+        ...resposta,
+        perfis: this.normalizarPerfis(resposta.perfis)
+      };
+    })
    }
   
   update(): void {
+    this.usuario.perfis = this.normalizarPerfis(this.usuario.perfis);
+
     this.service.update(this.usuario).subscribe(() => {
       this.toast.success('Usuário Atualizado com sucesso', 'Update');
       this.router.navigate(['usuarios']);
@@ -63,12 +124,30 @@ export class UsuarioUpdateComponent implements OnInit {
     )
   }
 
-  addPerfil(perfil: any): void {
-    
-    if(this.usuario.perfis.includes(perfil)){
-      this.usuario.perfis.splice(this.usuario.perfis.indexOf(perfil), 1);      
+  hasPerfil(perfil: number): boolean {
+    const valorDesejado = Number(perfil);
+    return this.usuario.perfis.some(perfilAtual => {
+      const valorAtual = typeof perfilAtual === 'string'
+        ? this.normalizarPerfis([perfilAtual])[0]
+        : Number(perfilAtual);
+
+      return Number(valorAtual) === valorDesejado;
+    });
+  }
+
+  addPerfil(perfil: number): void {
+    const perfilValue = Number(perfil);
+
+    if (this.hasPerfil(perfilValue)) {
+      this.usuario.perfis = this.usuario.perfis.filter(perfilAtual => {
+        const valorAtual = typeof perfilAtual === 'string'
+          ? this.normalizarPerfis([perfilAtual])[0]
+          : Number(perfilAtual);
+
+        return Number(valorAtual) !== perfilValue;
+      });
     } else {
-      this.usuario.perfis.push(perfil);        
+      this.usuario.perfis = [...this.usuario.perfis, perfilValue];
     }
   }
 

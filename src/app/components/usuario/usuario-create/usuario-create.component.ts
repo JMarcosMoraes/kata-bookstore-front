@@ -38,11 +38,13 @@ export class UsuarioCreateComponent implements OnInit {
   ngOnInit(): void {
     this.isPublicRegistration = this.route.snapshot.routeConfig?.path === 'register';
     if (this.isPublicRegistration) {
-      this.usuario.perfis = ['1'];
+      this.usuario.perfis = [1];
     }
   }
 
   create(): void {
+    this.usuario.perfis = this.usuario.perfis.map(perfil => Number(perfil));
+
     this.service.create(this.usuario).subscribe(() => {
       this.toast.success('Usuário cadastrado com sucesso', 'Cadastro');
       if (this.isPublicRegistration) {
@@ -63,12 +65,13 @@ export class UsuarioCreateComponent implements OnInit {
     )
   }
 
-  addPerfil(perfil: any): void {
-    
-    if(this.usuario.perfis.includes(perfil)){
-      this.usuario.perfis.splice(this.usuario.perfis.indexOf(perfil), 1);      
+  addPerfil(perfil: number): void {
+    const perfilValue = Number(perfil);
+
+    if (this.usuario.perfis.includes(perfilValue)) {
+      this.usuario.perfis = this.usuario.perfis.filter(perfilAtual => Number(perfilAtual) !== perfilValue);
     } else {
-      this.usuario.perfis.push(perfil);        
+      this.usuario.perfis = [...this.usuario.perfis, perfilValue];
     }
   }
 
